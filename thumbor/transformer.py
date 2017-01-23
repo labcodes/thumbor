@@ -120,7 +120,7 @@ class Transformer(object):
             logger.warn("Ignoring trim, there wouldn't be any image left, check the tolerance.")
             return
 
-        self.engine.crop(box[0], box[1], box[2] + 1, box[3] + 1)
+        self.engine.crop('', box[0], box[1], box[2] + 1, box[3] + 1)
         if self.context.request.should_crop:
             self.context.request.crop['left'] -= box[0]
             self.context.request.crop['top'] -= box[1]
@@ -246,12 +246,12 @@ class Transformer(object):
             crop['right'] = limit(crop['right'], source_width)
             crop['bottom'] = limit(crop['bottom'], source_height)
 
-            if crop['left'] >= crop['right'] or crop['top'] >= crop['bottom']:
+            if not crop['from_edge'] and (crop['left'] >= crop['right'] or crop['top'] >= crop['bottom']):
                 self.context.request.should_crop = False
                 crop['left'] = crop['right'] = crop['top'] = crop['bottom'] = 0
                 return
 
-            self.engine.crop(crop['left'], crop['top'], crop['right'], crop['bottom'])
+            self.engine.crop(crop['from_edge'], crop['left'], crop['top'], crop['right'], crop['bottom'])
 
     def auto_crop(self):
         source_width, source_height = self.engine.size
@@ -280,7 +280,7 @@ class Transformer(object):
         crop_top = int(round(min(max(focal_y - (crop_height / 2), 0.0), source_height - crop_height)))
         crop_bottom = min(crop_top + crop_height, source_height)
 
-        self.engine.crop(crop_left, crop_top, crop_right, crop_bottom)
+        self.engine.crop('', crop_left, crop_top, crop_right, crop_bottom)
 
     def flip(self):
         if self.context.request.horizontal_flip:

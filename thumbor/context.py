@@ -110,6 +110,7 @@ class RequestParameters:
                  debug=False,
                  meta=False,
                  trim=None,
+                 from_edge=None,
                  crop_left=None,
                  crop_top=None,
                  crop_right=None,
@@ -150,6 +151,7 @@ class RequestParameters:
             self.crop = crop
         else:
             self.crop = {
+                'from_edge': from_edge,
                 'left': self.int_or_0(crop_left),
                 'right': self.int_or_0(crop_right),
                 'top': self.int_or_0(crop_top),

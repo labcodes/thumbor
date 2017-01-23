@@ -17,7 +17,7 @@ class Url(object):
     debug = '(?:(?P<debug>debug)/)?'
     meta = '(?:(?P<meta>meta)/)?'
     trim = '(?:(?P<trim>trim(?::(?:top-left|bottom-right))?(?::\d+)?)/)?'
-    crop = '(?:(?P<crop_left>\d+)x(?P<crop_top>\d+):(?P<crop_right>\d+)x(?P<crop_bottom>\d+)/)?'
+    crop = '(?:(?:(?P<from_edge>E|P|))(?P<crop_left>\d+)x(?P<crop_top>\d+):(?P<crop_right>\d+)x(?P<crop_bottom>\d+)/)?'
     fit_in = '(?:(?P<adaptive>adaptive-)?(?P<full>full-)?(?P<fit_in>fit-in)/)?'
     dimensions = '(?:(?P<horizontal_flip>-)?(?P<width>(?:\d+|orig))?x(?P<vertical_flip>-)?(?P<height>(?:\d+|orig))?/)?'
     halign = r'(?:(?P<halign>left|right|center)/)?'
@@ -73,6 +73,7 @@ class Url(object):
             'meta': result['meta'] == 'meta',
             'trim': result['trim'],
             'crop': {
+                'from_edge': result['from_edge'],
                 'left': int_or_0(result['crop_left']),
                 'top': int_or_0(result['crop_top']),
                 'right': int_or_0(result['crop_right']),
@@ -109,6 +110,7 @@ class Url(object):
                          vertical_flip=False,
                          halign='center',
                          valign='middle',
+                         from_edge=None,
                          crop_left=None,
                          crop_top=None,
                          crop_right=None,
@@ -131,7 +133,8 @@ class Url(object):
 
         crop = crop_left or crop_top or crop_right or crop_bottom
         if crop:
-            url.append('%sx%s:%sx%s' % (
+            url.append('%s%sx%s:%sx%s' % (
+                from_edge,
                 crop_left,
                 crop_top,
                 crop_right,

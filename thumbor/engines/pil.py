@@ -127,13 +127,46 @@ class Engine(BaseEngine):
         self.image.draft(mode, (int(width), int(height)))
         self.image = self.image.resize((int(width), int(height)), resample)
 
-    def crop(self, left, top, right, bottom):
-        self.image = self.image.crop((
-            int(left),
-            int(top),
-            int(right),
-            int(bottom)
-        ))
+    def crop(self, from_edge, left, top, right, bottom):
+        width = int(self.image.width)
+        height = int(self.image.height)
+
+        if from_edge == 'E':
+            left_edge = int(left)
+            top_edge = int(top)
+            right_edge = width - int(right)
+            bottom_edge = height - int(bottom)
+
+            self.image = self.image.crop((
+                left_edge,
+                top_edge,
+                right_edge,
+                bottom_edge
+            ))
+        elif from_edge == 'P':
+            left_crop = (int(left) / float(100)) * width
+            top_crop = (int(top) / float(100)) * height
+            right_crop = (int(right) / float(100)) * width
+            bottom_crop = (int(bottom) / float(100)) * height
+
+            left_edge = left_crop
+            top_edge = top_crop
+            right_edge = width - right_crop
+            bottom_edge = height - bottom_crop
+
+            self.image = self.image.crop((
+                left_edge,
+                top_edge,
+                right_edge,
+                bottom_edge
+            ))
+        else:
+            self.image = self.image.crop((
+                int(left),
+                int(top),
+                int(right),
+                int(bottom)
+            ))
 
     def rotate(self, degrees):
         # PIL rotates counter clockwise
