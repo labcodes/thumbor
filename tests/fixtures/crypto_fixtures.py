@@ -24,6 +24,7 @@ BASE_PARAMS = {
     'halign': 'center',
     'valign': 'middle',
     'trim': '',
+    "from_edge": '',
     'crop_left': 0,
     'crop_top': 0,
     'crop_right': 0,
@@ -44,6 +45,7 @@ DECRYPT_TESTS = [
             "meta": False,
             "fit_in": False,
             "crop": {
+                "from_edge": '',
                 "left": 0,
                 "top": 0,
                 "right": 0,
@@ -73,6 +75,7 @@ DECRYPT_TESTS = [
             "meta": False,
             "fit_in": False,
             "crop": {
+                "from_edge": '',
                 "left": 0,
                 "top": 0,
                 "right": 0,

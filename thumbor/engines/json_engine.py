@@ -41,15 +41,16 @@ class JSONEngine(BaseEngine):
         self.engine.resize(width, height)
         self.refresh_image()
 
-    def crop(self, left, top, right, bottom):
+    def crop(self, from_edge, left, top, right, bottom):
         self.operations.append({
             "type": "crop",
+            "from_edge": from_edge,
             "left": left,
             "top": top,
             "right": right,
             "bottom": bottom
         })
-        self.engine.crop(left, top, right, bottom)
+        self.engine.crop(from_edge, left, top, right, bottom)
         self.refresh_image()
 
     def focus(self, points):

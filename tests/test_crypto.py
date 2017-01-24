@@ -106,7 +106,7 @@ class CryptoTestCase(TestCase):
         expected_options = {
             'trim': 'trim', 'full': False, 'halign': 'center', 'fit_in': False,
             'vertical_flip': True, 'image': '/some/image.jpg',
-            'crop': {'top': 11, 'right': 12, 'bottom': 13, 'left': 10},
+            'crop': {'from_edge': '', 'top': 11, 'right': 12, 'bottom': 13, 'left': 10},
             'height': 300, 'width': 300, 'meta': False, 'horizontal_flip': True,
             'filters': 'some_filter()', 'valign': 'middle', 'debug': False,
             'hash': 'e2baf424fa420b73a97476956dfb858f', 'adaptive': False, 'smart': True
@@ -147,6 +147,7 @@ class CryptoTestCase(TestCase):
             halign="center",
             valign="middle",
             trim=True,
+            from_edge='',
             crop_left=10,
             crop_top=11,
             crop_right=12,

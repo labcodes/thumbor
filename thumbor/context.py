@@ -110,7 +110,7 @@ class RequestParameters:
                  debug=False,
                  meta=False,
                  trim=None,
-                 from_edge=None,
+                 from_edge='',
                  crop_left=None,
                  crop_top=None,
                  crop_right=None,

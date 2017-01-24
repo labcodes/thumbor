@@ -25,7 +25,7 @@ class UrlTestCase(TestCase):
         expect(regex).to_equal(
             '/?(?:(?:(?P<unsafe>unsafe)|(?P<hash>.+?))/)?(?:(?P<debug>debug)/)?(?:(?P<meta>meta)/)?'
             '(?:(?P<trim>trim(?::(?:top-left|bottom-right))?(?::\\d+)?)/)?'
-            '(?:(?P<crop_left>\\d+)x(?P<crop_top>\\d+):(?P<crop_right>\\d+)x(?P<crop_bottom>\\d+)/)?'
+            '(?:(?:(?P<from_edge>E|P|))(?P<crop_left>\\d+)x(?P<crop_top>\\d+):(?P<crop_right>\\d+)x(?P<crop_bottom>\\d+)/)?'
             '(?:(?P<adaptive>adaptive-)?(?P<full>full-)?(?P<fit_in>fit-in)/)?(?:(?P<horizontal_flip>-)?'
             '(?P<width>(?:\\d+|orig))?x(?P<vertical_flip>-)?(?P<height>(?:\\d+|orig))?/)?'
             '(?:(?P<halign>left|right|center)/)?(?:(?P<valign>top|bottom|middle)/)?'
@@ -38,7 +38,7 @@ class UrlTestCase(TestCase):
         expect(regex).to_equal(
             '/?(?:(?P<debug>debug)/)?(?:(?P<meta>meta)/)?'
             '(?:(?P<trim>trim(?::(?:top-left|bottom-right))?(?::\\d+)?)/)?'
-            '(?:(?P<crop_left>\\d+)x(?P<crop_top>\\d+):(?P<crop_right>\\d+)x(?P<crop_bottom>\\d+)/)?'
+            '(?:(?:(?P<from_edge>E|P|))(?P<crop_left>\\d+)x(?P<crop_top>\\d+):(?P<crop_right>\\d+)x(?P<crop_bottom>\\d+)/)?'
             '(?:(?P<adaptive>adaptive-)?(?P<full>full-)?(?P<fit_in>fit-in)/)?(?:(?P<horizontal_flip>-)?'
             '(?P<width>(?:\\d+|orig))?x(?P<vertical_flip>-)?(?P<height>(?:\\d+|orig))?/)?'
             '(?:(?P<halign>left|right|center)/)?(?:(?P<valign>top|bottom|middle)/)?'
@@ -62,7 +62,7 @@ class UrlTestCase(TestCase):
             'fit_in': True,
             'vertical_flip': True,
             'image': 'some/image.jpg',
-            'crop': {'top': 200, 'right': 400, 'bottom': 500, 'left': 300},
+            'crop': {'from_edge': '', 'top': 200, 'right': 400, 'bottom': 500, 'left': 300},
             'height': 400,
             'width': 300,
             'meta': True,

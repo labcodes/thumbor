@@ -110,7 +110,7 @@ class Url(object):
                          vertical_flip=False,
                          halign='center',
                          valign='middle',
-                         from_edge=None,
+                         from_edge='',
                          crop_left=None,
                          crop_top=None,
                          crop_right=None,

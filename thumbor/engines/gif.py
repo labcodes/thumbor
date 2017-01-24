@@ -81,8 +81,8 @@ class Engine(PILEngine):
 
         self.operations.append(arguments)
 
-    def crop(self, left, top, right, bottom):
-        arguments = "--crop %d,%d-%d,%d" % (left, top, right, bottom)
+    def crop(self, from_edge, left, top, right, bottom):
+        arguments = "--crop %s%d,%d-%d,%d" % (from_edge, left, top, right, bottom)
         self.operations.append(arguments)
         self.flush_operations()
         self.update_image_info()

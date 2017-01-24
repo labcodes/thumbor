@@ -59,7 +59,7 @@ class TransformerTestCase(TestCase):
             target_width=800, target_height=600,
             halign="right", valign="top",
             focal_points=[],
-            crop_left=200, crop_top=0, crop_right=100, crop_bottom=100
+            from_edge='', crop_left=200, crop_top=0, crop_right=100, crop_bottom=100
         )
 
         ctx = data.to_context()
@@ -100,7 +100,7 @@ class TransformerTestCase(TestCase):
             target_width=400, target_height=150,
             halign="center", valign="middle",
             focal_points=[],
-            crop_left=0, crop_top=75, crop_right=800, crop_bottom=375
+            from_edge='', crop_left=0, crop_top=75, crop_right=800, crop_bottom=375
         )
         context = test_data.to_context(detectors=[MockErrorSyncDetector], ignore_detector_error=True)
         trans = Transformer(context)
@@ -112,7 +112,7 @@ class TransformerTestCase(TestCase):
             target_width=400, target_height=150,
             halign="center", valign="middle",
             focal_points=[],
-            crop_left=0, crop_top=75, crop_right=800, crop_bottom=375
+            from_edge='', crop_left=0, crop_top=75, crop_right=800, crop_bottom=375
         )
         context = test_data.to_context(detectors=[MockErrorSyncDetector], ignore_detector_error=False)
         trans = Transformer(context)
@@ -155,7 +155,7 @@ class TransformerTestCase(TestCase):
             target_width=100, target_height=100,
             halign="right", valign="top",
             focal_points=[],
-            crop_left=None, crop_top=None, crop_right=None, crop_bottom=None,
+            from_edge='', crop_left=None, crop_top=None, crop_right=None, crop_bottom=None,
             meta=True
         )
 
@@ -180,7 +180,7 @@ class TransformerTestCase(TestCase):
             target_width=-800, target_height=-600,
             halign="right", valign="top",
             focal_points=[],
-            crop_left=None, crop_top=None, crop_right=None, crop_bottom=None
+            from_edge='', crop_left=None, crop_top=None, crop_right=None, crop_bottom=None
         )
 
         ctx = data.to_context()
@@ -204,7 +204,7 @@ class TransformerTestCase(TestCase):
             target_width=-800, target_height=-600,
             halign="right", valign="top",
             focal_points=[],
-            crop_left=None, crop_top=None, crop_right=None, crop_bottom=None
+            from_edge='', crop_left=None, crop_top=None, crop_right=None, crop_bottom=None
         )
 
         ctx = data.to_context()
@@ -232,7 +232,7 @@ class TransformerTestCase(TestCase):
             target_width=600, target_height=400,
             halign="right", valign="top",
             focal_points=[],
-            crop_left=200, crop_top=0, crop_right=100, crop_bottom=100
+            from_edge='', crop_left=200, crop_top=0, crop_right=100, crop_bottom=100
         )
 
         ctx = data.to_context()

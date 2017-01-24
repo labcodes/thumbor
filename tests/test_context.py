@@ -175,6 +175,7 @@ class RequestParametersTestCase(TestCase):
         expect(params.meta).to_be_false()
         expect(params.trim).to_be_null()
         expect(params.crop).to_be_like({
+            'from_edge': '',
             'top': 0,
             'right': 0,
             'bottom': 0,
@@ -226,23 +227,24 @@ class RequestParametersTestCase(TestCase):
 
     def test_can_get_params_with_crop(self):
         params = RequestParameters(
+            from_edge='',
             crop_left=10,
             crop_right=20,
             crop_top=30,
             crop_bottom=40,
         )
         expect(params.crop).to_be_like({
-            'top': 30, 'right': 20, 'bottom': 40, 'left': 10
+            'from_edge': '', 'top': 30, 'right': 20, 'bottom': 40, 'left': 10
         })
 
     def test_can_get_params_with_custom_crop(self):
         params = RequestParameters(
             crop={
-                'top': 30, 'right': 20, 'bottom': 40, 'left': 10
+                'from_edge': '', 'top': 30, 'right': 20, 'bottom': 40, 'left': 10
             }
         )
         expect(params.crop).to_be_like({
-            'top': 30, 'right': 20, 'bottom': 40, 'left': 10
+            'from_edge': '', 'top': 30, 'right': 20, 'bottom': 40, 'left': 10
         })
         expect(params.should_crop).to_be_true()
 
