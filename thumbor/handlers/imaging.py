@@ -14,6 +14,7 @@ from thumbor.handlers import ContextHandler
 from thumbor.context import RequestParameters
 import tornado.gen as gen
 import tornado.web
+from thumbor.utils import logger
 
 
 class ImagingHandler(ContextHandler):
@@ -89,6 +90,7 @@ class ImagingHandler(ContextHandler):
 
     @tornado.web.asynchronous
     def get(self, **kw):
+        logger.warn("GOT REQUEST: {0}".format(kw))
         self.check_image(kw)
 
     @tornado.web.asynchronous
